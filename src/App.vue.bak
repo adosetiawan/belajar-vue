@@ -1,0 +1,82 @@
+<script setup lang="ts">
+import { computed, reactive, ref } from 'vue';
+import MainButton from './components/MainButton.vue';
+const buttonSetting = {
+  title: 'button objek setting',
+  disabled: true,
+};
+
+const count = ref(1); 
+const state = reactive({
+  name: 'Adrian Setiawan',
+  age: 20,
+  address: 'Jl. Raya No. 1',
+});
+const increment = () =>{
+  return count.value++;
+}
+
+const author = reactive({
+  name: 'Adrian Setiawan',
+  age: 20,
+  address: 'Jl. Raya No. 1',
+  books:[
+    'Vue.js for Beginners',
+    'Vue.js for Intermediate',
+    'Vue.js for Advanced',
+    'Vue.js for Expert',
+  ]
+})
+const isPublisher = computed(() => {
+  console.log('isPublisher', author.books.length);
+  return author.books.length > 0 ? 'is Publisher' : 'is not Publisher';
+});
+</script>
+
+
+<template>
+  <OptionComponent />
+  <CompositionComponent/>
+  <MainButton :title="'ini buttin komponen'"></MainButton>
+  <MainButton v-bind:title="'ini buttin menggunakan v bind'" v-bind:disabled="true"></MainButton>
+  <MainButton v-bind="buttonSetting"></MainButton>
+  <h1>ref</h1>
+  <button @click="increment">{{ count }}</button>
+  <h1>Reactive</h1>
+  <button @click="state.age++">
+    {{ state.name }} {{ state.age }} {{ state.address }}
+  </button>
+  <h1>Computed Properties</h1>
+  <div>
+    {{ isPublisher }}
+  </div>
+</template>
+
+<style scoped>
+header {
+  line-height: 1.5;
+}
+
+.logo {
+  display: block;
+  margin: 0 auto 2rem;
+}
+
+@media (min-width: 1024px) {
+  header {
+    display: flex;
+    place-items: center;
+    padding-right: calc(var(--section-gap) / 2);
+  }
+
+  .logo {
+    margin: 0 2rem 0 0;
+  }
+
+  header .wrapper {
+    display: flex;
+    place-items: flex-start;
+    flex-wrap: wrap;
+  }
+}
+</style>
