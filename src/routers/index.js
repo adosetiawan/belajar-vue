@@ -5,7 +5,7 @@ import ProfilView from '@/views/ProfilView.vue';
 import ScheduleView from '@/views/ScheduleView.vue';
 import AbsenceView from '@/views/AbsenceView.vue';
 import PointsView from '@/views/PointsView.vue';
-
+import ChatView from '@/views/ChatView.vue';
 const routes = [
     {
         path: '/',
@@ -59,6 +59,15 @@ const routes = [
         meta: {
             headerComponent: 'HeaderPageComponent',
             headerTitle: 'Poin Pengguna',
+        },
+    },
+    {
+        path: '/chat',
+        name: 'Chat',
+        component: ChatView,
+        meta: {
+            headerComponent: 'HeaderPageComponent',
+            headerTitle: 'Chat',
         },
     },
 ];
